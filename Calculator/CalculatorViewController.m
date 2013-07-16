@@ -43,6 +43,24 @@
 {
     //declaring a variable called "digit" and sending to sender??
     NSString *digit = sender.currentTitle;
+    NSLog(@"Digit pressed %@", digit);
+    //check if there is a . already in the number inside display label
+    NSRange isNumberDecimal = [self.display.text rangeOfString:@"."];
+    if (self.UserIsInTheMiddleOfEnteringANumber){
+        //if user pressed . button
+        if([digit isEqualToString:@"."]){
+            if (isNumberDecimal.location == NSNotFound) {
+                self.display.text=[self.display.text stringByAppendingString:digit];
+            }
+        }else{//user did not press . button
+            self.display.text =[self.display.text stringByAppendingString:digit];
+        }
+    }else {
+        //if user start with . assume the number starts with 0.
+        if ([digit isEqualToString:@"."]) {digit=@"0.";}
+        self.display.text=digit;
+        self.UserIsInTheMiddleOfEnteringANumber=YES;
+    }
     if (self.UserIsInTheMiddleOfEnteringANumber) {
     self.display.text = [self.display.text stringByAppendingString:digit];
     }else{
