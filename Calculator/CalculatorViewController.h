@@ -9,7 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-//interface says here comes a class.  Declare instance variables and declare methods under @interface
 @interface CalculatorViewController : UIViewController
 
 
