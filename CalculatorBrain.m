@@ -24,6 +24,11 @@
 
 }
 
+-(void)emptyStack
+{
+    _operandStack = nil;
+}
+
 -(void)pushOperand:(double)operand
 {
     NSNumber *operandObject = [NSNumber numberWithDouble:operand];
@@ -59,6 +64,8 @@
         result = sqrt([self popOperand]);
     }else if ([operation isEqualToString:@"π"]){
         result = M_PI;
+//    }else if ([operation isEqualToString:@"+/-"]){
+//        result = (-1.0) *[self.popOperand];
     }
     
     [self pushOperand:result];

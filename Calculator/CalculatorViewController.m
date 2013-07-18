@@ -18,9 +18,8 @@
 // nonatomic means not thread safe
 @property (nonatomic) BOOL UserIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
-@property (weak, nonatomic) IBOutlet UILabel *display;
 @property (weak, nonatomic) IBOutlet UILabel *history;
-
+@property (nonatomic) BOOL userIsTypingFloatPointNumber;
 
 @end
 
@@ -33,6 +32,7 @@
 @synthesize brain = _brain;
 @synthesize history = _history;
 @synthesize display = _display;
+@synthesize userIsTypingFloatPointNumber = _userIsTypingFloatPointNumber;
 
 -(CalculatorBrain *)brain;
 {
@@ -54,8 +54,8 @@
             if (isNumberDecimal.location == NSNotFound) {
                 self.display.text=[self.display.text stringByAppendingString:digit];
             }
-        }else{//user did not press . button
-            self.display.text =[self.display.text stringByAppendingString:digit];
+       }else{//user did not press . button
+           self.display.text =[self.display.text stringByAppendingString:digit];
         }
     }else {
         //if user start with . assume the number starts with 0.
@@ -63,35 +63,35 @@
         self.display.text=digit;
         self.UserIsInTheMiddleOfEnteringANumber=YES;
     }
-    if (self.UserIsInTheMiddleOfEnteringANumber) {
-    self.display.text = [self.display.text stringByAppendingString:digit];
-    }else{
-        self.display.text = digit;
-        self.UserIsInTheMiddleOfEnteringANumber = YES;
-    }
+//the following code produces 2 of each digit pressed to be displayed in "display"
+//    if (self.UserIsInTheMiddleOfEnteringANumber) {
+//    self.display.text = [self.display.text stringByAppendingString:digit];
+//    }else{
+//        self.display.text = digit;
+//        self.UserIsInTheMiddleOfEnteringANumber = YES;
+//    }
     self.history.text = self.history.text = [self.history.text stringByAppendingString:digit];
 }
 - (IBAction)operationPressed:(UIButton *)sender
 {
-    if (self.UserIsInTheMiddleOfEnteringANumber) [self enterPressed];
-    double result = [self.brain performOperation:sender.currentTitle];
-                                                  NSString *resultString = [NSString stringWithFormat:@"%g", result];
-                                                  self.display.text = resultString;
+    if (self.UserIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    NSString *operation = [sender currentTitle];
+    double result = [self.brain performOperation:operation];
+    self.display.text = [NSString stringWithFormat:@"%g", result];
 }
 - (IBAction)enterPressed
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.UserIsInTheMiddleOfEnteringANumber = NO;
-    self.history.text = [self.history.text stringByAppendingString:@" "];
-    self.history.text = [self.history.text stringByAppendingString:self.display.text];
-    
-}
+    }
 
 - (IBAction)clearPressed:(UIButton *)sender
 {
+   self.history.text = @"";
     self.display.text = @"0";
-    self.history.text = @"0";
-    self.UserIsInTheMiddleOfEnteringANumber = NO;
+    _UserIsInTheMiddleOfEnteringANumber = NO;
     [self.brain emptyStack];
 }
 - (IBAction)backspacePressed:(UIButton *)sender
