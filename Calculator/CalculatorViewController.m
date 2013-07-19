@@ -71,7 +71,7 @@
 
 
 
-- (IBAction)enterPressed:(UIButton *)sender
+- (IBAction)enterPressed
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.UserIsInTheMiddleOfEnteringANumber = NO;
@@ -103,8 +103,23 @@
 
 - (IBAction)backspacePressed:(UIButton *)sender
 {
-    self.display.text = [self.display.text substringToIndex:[self.display.text length] -1];
-    self.history.text = [self.history.text substringToIndex:[self.history.text length] -1];
+    if (self.UserIsInTheMiddleOfEnteringANumber)
+        return;
+    
+    NSInteger length = self.display.text.length;
+    
+    if (length > 1)
+    {
+        if ([[self.display.text substringFromIndex:length-1]isEqualToString:@"."])
+            self.userIsTypingFloatPointNumber = NO;
+        
+        self.display.text = [self.display.text substringFromIndex: length-1];
+    }
+    else
+    {
+        self.display.text = @".";
+        self.UserIsInTheMiddleOfEnteringANumber = NO;
+    }
 }
 
 @end
