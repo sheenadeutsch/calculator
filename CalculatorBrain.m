@@ -23,7 +23,7 @@
 }
 
 -(void)emptyStack{
-    _operandStack = nil;
+    [_operandStack removeAllObjects] ;
 }
 
 -(void)pushOperand:(double)operand{
@@ -39,6 +39,8 @@
 
 -(double)performOperation:(NSString *)operation{
     double result = 0;
+    //maybe use a switch instead after I figure out the syntax
+    //actually probably not appropriate here
     
     if ([operation isEqualToString:@"+"]) {
         result = [self popOperand] + [self popOperand];

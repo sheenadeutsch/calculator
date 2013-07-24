@@ -179,7 +179,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="h2e-aP-3Mq"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="EvQ-Gk-byv"/>
                                 </connections>
                             </button>
@@ -193,7 +192,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="LQc-Zg-nXv"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="HyF-aH-G8q"/>
                                 </connections>
                             </button>
@@ -207,7 +205,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="h4G-WZ-3kK"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="uD5-Ll-uc8"/>
                                 </connections>
                             </button>
@@ -221,8 +218,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="Uof-s1-6ja"/>
-                                    <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="muo-2a-BqI"/>
                                     <action selector="plusMinusPressed:" destination="2" eventType="touchUpInside" id="zqi-3C-kPo"/>
                                 </connections>
                             </button>
@@ -236,7 +231,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="oh9-n2-zpA"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="BFD-R1-xvE"/>
                                 </connections>
                             </button>
@@ -253,7 +247,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="decimalPressed:" destination="2" eventType="touchUpInside" id="XhL-zm-ANz"/>
                                     <action selector="dotPressed:" destination="2" eventType="touchUpInside" id="4GB-bA-dsF"/>
                                 </connections>
                             </button>
@@ -267,7 +260,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="hQI-tE-490"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="JWz-1z-b6K"/>
                                 </connections>
                             </button>
@@ -281,7 +273,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="Vca-s9-sAB"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="Ts7-b8-LoC"/>
                                 </connections>
                             </button>
@@ -295,7 +286,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="4pm-6S-Twe"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="54k-4a-e45"/>
                                 </connections>
                             </button>
@@ -312,7 +302,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="0mW-18-CRz"/>
                                     <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="ik4-xX-uiU"/>
                                 </connections>
                             </button>
@@ -329,9 +318,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clearPressed:" destination="2" eventType="touchUpInside" id="3CP-Xz-diE"/>
-                                    <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="xqs-GC-EZy"/>
-                                    <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="Y0i-Cu-A4w"/>
+                                    <action selector="clearPressed:" destination="2" eventType="touchUpInside" id="3pk-iC-HyG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n69-Sr-7ep">
@@ -465,9 +452,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1767" y="-198"/>
+            <point key="canvasLocation" x="-1961" y="-221"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CalculatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backspacePressed:"/>
+                <relationship kind="action" name="clearPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="digitPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="dotPressed:"/>
+                <relationship kind="action" name="operationPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="plusMinusPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="history" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

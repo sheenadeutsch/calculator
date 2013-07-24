@@ -6,15 +6,13 @@
 //  Copyright (c) 2013 Sheena Deutsch. All rights reserved.
 //
 
-//include the cal .h file and calbrain .h file
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
 
 //@interface is a private property? 
 @interface CalculatorViewController()
 
-//@property auto setter and getter
-// nonatomic means thread safe
+
 @property   (nonatomic)         BOOL        userIsInTheMiddleOfEnteringANumber;
 @property   (nonatomic)         BOOL        userIsInTheMiddleOfEnteringAFloat;
 @property   (nonatomic)         BOOL        equalsIsShown;
@@ -29,7 +27,7 @@
 
 -(CalculatorBrain *)brain;{
     //lazy instantiation: only loaded when needed.
-    //alloc (allocation): heap allocation for a new object is done by the NSObject class method + (id)alloc.  It allocates enough space for all the instance variables.  init(initializing) classes can have multiple, different initalizers in addition to plain init.  both alloc and init must ahppen on right after the other.
+    //alloc (allocation): It allocates enough space for all the instance variables.  init(initializing) classes can have multiple, different initalizers in addition to plain init. 
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
 }
@@ -78,17 +76,13 @@
 
 
 - (IBAction)clearPressed:(UIButton *)sender{
-    self.display.text = @"";
+    self.display.text = @"0";
     self.history.text = @"";
-    self.UserIsInTheMiddleOfEnteringANumber = NO;
     self.equalsIsShown = NO;
+    self.UserIsInTheMiddleOfEnteringANumber = NO;
     [self.brain emptyStack];
 }
 
-
-- (IBAction)signChangedPressed:(UIButton *)sender {
-    self.display.text = [[NSNumber numberWithDouble:([self.display.text doubleValue]* -1)]stringValue];
-}
 
 - (IBAction)backspacePressed:(id)sender {
     if(self.userIsInTheMiddleOfEnteringANumber){
@@ -110,18 +104,8 @@
         } else {
             self.display.text=[@"-" stringByAppendingString:self.display.text];
         }
-    } else{
-        [self operationPressed:sender];
     }
-    
 }
-//    if (self.userIsInTheMiddleOfEnteringANumber)
-//    {
-//        if([self.display.text hasPrefix:@"-"])
-//            self.display.text = [self.display.text substringFromIndex:1];
-//    } else self.display.text = [NSString stringWithFormat:@"-%@", self.display.text];
-//    return;
-//}
 
 
 @end
