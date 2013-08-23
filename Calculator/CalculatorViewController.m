@@ -61,12 +61,12 @@
 
 
 - (IBAction)variablePressed:(UIButton *)sender {
-    NSString * variable = sender.currentTitle;
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"x",@"10",@"a",@"2",@"b", nil];
+    NSString *variable = sender.currentTitle;
+    NSDictionary *variableDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"x",@"10",@"a",@"2",@"b", nil];
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
-    id numberForVariable = [testDictionary objectForKey:variable];
+    id numberForVariable = [variableDictionary objectForKey:variable];
     
     [self.brain pushOperand:[numberForVariable doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
@@ -77,7 +77,7 @@
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    //self.descriptionOfProgram = [CalculatorBrain descriptionOfProgram:[self.brain program]];
+    //self.descriptionOfProgram = [CalculatorBrain descriptionOfProgram:[self.brain program]];//having this descritpionOfProgram = does not affect how the calculator functions ??  
     self.userIsInTheMiddleOfEnteringAFloat = NO;
 }
 
@@ -88,7 +88,7 @@
         self.display.text = [NSString stringWithFormat:@"%@", result];
         self.history.text = [NSString stringWithFormat:@"%@ %@ = %@   ", self.history.text, sender.currentTitle, result];
         
-        self.descriptionOfProgram = [[CalculatorBrain class]descriptionOfProgram:self.brain.program];
+        //self.descriptionOfProgram = [CalculatorBrain descriptionOfProgram:[self.brain program]];//having this descritpionOfProgram = does not affect how the calculator functions ??
     }
 }
 
@@ -182,8 +182,7 @@
     else self.display.text = [NSString stringWithFormat:@"%g", [result doubleValue]];
     
     // Now the history label, from the latest description of program
-    self.display.text =
-    [CalculatorBrain descriptionOfProgram:self.brain.program];
+    self.display.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
     
     // And finally the variables text, with a bit of formatting
     self.history.text = [[[[[[[self programVariableValues] description]

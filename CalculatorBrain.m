@@ -109,21 +109,6 @@
 }
 
 
-
-//compare two operations' priority
-+(BOOL)compareOperationPriority:(NSString *)firstOperation vs:(NSString *)secondOperation{
-    BOOL result = 0;
-    NSDictionary *operationPriority= [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"+",@"1",@"-",@"2",@"*",@"2",@"/",@"3",@"sin",@"cos",@"sqrt", nil];
-    int firstOperationLevel = [[operationPriority objectForKey:firstOperation] intValue];
-    int secondOperationLevel;
-    if (secondOperation) {
-        secondOperationLevel = [[operationPriority objectForKey:secondOperation] intValue];
-        if (firstOperationLevel > secondOperationLevel) result = 1;
-    }
-    return result;
-}
-
-
 //get rid of unnecessary parienthese by comparing the last and the second last operation
 +(NSString *)supressParienthese:(NSString *)description{
     NSMutableArray *descriptionArray=[[description componentsSeparatedByString:@" "] mutableCopy];
@@ -146,6 +131,21 @@
     description = [[descriptionArray valueForKey:@"description"]
                    componentsJoinedByString:@" "];
     return description;
+}
+
+
+
+//compare two operations' priority
++(BOOL)compareOperationPriority:(NSString *)firstOperation vs:(NSString *)secondOperation{
+    BOOL result = 0;
+    NSDictionary *operationPriority= [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"+",@"1",@"-",@"2",@"*",@"2",@"/",@"3",@"sin",@"cos",@"sqrt", nil];
+    int firstOperationLevel = [[operationPriority objectForKey:firstOperation] intValue];
+    int secondOperationLevel;
+    if (secondOperation) {
+        secondOperationLevel = [[operationPriority objectForKey:secondOperation] intValue];
+        if (firstOperationLevel > secondOperationLevel) result = 1;
+    }
+    return result;
 }
 
 
