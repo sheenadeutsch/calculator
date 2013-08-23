@@ -62,15 +62,10 @@
 
 - (IBAction)variablePressed:(UIButton *)sender {
     NSString *variable = sender.currentTitle;
-    NSDictionary *variableDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"x",@"10",@"a",@"2",@"b", nil];
-    if (self.userIsInTheMiddleOfEnteringANumber) {
-        [self enterPressed];
-    }
-    id numberForVariable = [variableDictionary objectForKey:variable];
+    self.display.text = variable;
+    [self.brain pushVariable:sender.currentTitle];
+    [self testVariableValues];
     
-    [self.brain pushOperand:[numberForVariable doubleValue]];
-    self.userIsInTheMiddleOfEnteringANumber = NO;
-    self.history.text = [self.history.text stringByAppendingString:variable];
 }
 
 
